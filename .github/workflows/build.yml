@@ -48,11 +48,7 @@ jobs:
           name: package
           path: ${{ steps.buildozer.outputs.filename }}
 
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          path: data
-          ref: data # Branch name
+     
 
       - name: Push binary to data branch
         if: github.event_name == 'push'
