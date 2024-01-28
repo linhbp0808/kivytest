@@ -88,13 +88,13 @@ fullscreen = 0
 #android.permissions = INTERNET,CAMERA,ACCESS_FINE_LOCATION,ACCESS_COARSE_LOCATION,BATTERY_STATS
 
 # (int) Android API to use
-#android.api = 19
+#android.api = 31
 
 # (int) Minimum API required
-#android.minapi = 9
+#android.minapi = 21
 
 # (int) Android SDK version to use
-#android.sdk = 20
+#android.sdk = 21
 
 # (str) Android NDK version to use
 #android.ndk = 9c
