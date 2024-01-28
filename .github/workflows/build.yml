@@ -1,5 +1,4 @@
 name: Build APK
-    on: [push]
     jobs:
       build-android:
         name: Build for Android
