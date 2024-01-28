@@ -49,7 +49,7 @@ requirements = kivy,git+https://gitlab.com/kivymd/KivyMD.git
 #presplash.filename = %(source.dir)s/data/presplash.png
 
 # (str) Icon of the application
-#icon.filename = %(source.dir)s/icon.png
+#icon.filename = %(source.dir)s/data/icon.png
 
 # (str) Supported orientation (one of landscape, portrait or all)
 orientation = portrait
