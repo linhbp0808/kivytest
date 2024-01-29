@@ -1,7 +1,7 @@
 [app]
 
 # (str) Title of your application
-title = Write To Kivy
+title = tele
 
 # (str) Package name
 package.name = KivyTest
@@ -37,7 +37,7 @@ version = 0.404
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy,sdl2_ttf,pillow,telethon,opentele
+requirements = python3,kivy,sdl2_ttf,pillow,telethon
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
