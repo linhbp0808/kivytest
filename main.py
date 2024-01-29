@@ -13,12 +13,6 @@ class TelegramApp(BoxLayout):
 
         self.horizontal_box = BoxLayout(orientation='horizontal',size_hint=(None, None), size=(400, 40), pos=(0, 0))
         # Thay thế các giá trị sau bằng thông tin tài khoản Telegram của bạn
-        from opentele.td import TDesktop
-        from opentele.tl import TelegramClient
-        from opentele.api import API, UseCurrentSession
-        import asyncio
-        api = API.TelegramDesktop.Generate(system='macos',unique_id='2')
-        print(api)
         api_id=2040
         api_hash="b18441a1ff607e10a989891a5462e627"
         # Khởi tạo đối tượng TelegramClient
@@ -30,7 +24,7 @@ class TelegramApp(BoxLayout):
             'password': 'xoay',  # (optional) password if the proxy requires auth
             'rdns': True
             }
-        self.client = TelegramClient('session_name',api=api)#,proxy=proxy)
+        self.client = TelegramClient('session_name',api_id,api_hash)#,proxy=proxy)
 
 
         # Tạo TextInput để nhập số điện thoại
