@@ -2,7 +2,7 @@ from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
-from telethon.sync import TelegramClient, events
+from telethon.sync import TelegramClient
 
 class TelegramApp(BoxLayout):
     def __init__(self, **kwargs):
@@ -11,15 +11,8 @@ class TelegramApp(BoxLayout):
         self.orientation = 'vertical'
         self.spacing = 10
 
-        # Thay thế các giá trị sau bằng thông tin tài khoản Telegram của bạn
-        from opentele.td import TDesktop
-        from opentele.tl import TelegramClient
-        from opentele.api import API, UseCurrentSession
-        api = API.TelegramAndroid.Generate()
-
-
         # Khởi tạo đối tượng TelegramClient
-        self.client = TelegramClient('session_name', api=api)
+        self.client = TelegramClient('session_name', api_id=6,api_hash='eb06d4abfb49dc3eeb1aeb98ae0f581e')
 
         # Tạo TextInput để nhập số điện thoại
         self.phone_input = TextInput(hint_text='Enter phone number', multiline=False)
