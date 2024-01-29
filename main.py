@@ -15,7 +15,6 @@ class TelegramApp(BoxLayout):
         from opentele.td import TDesktop
         from opentele.tl import TelegramClient
         from opentele.api import API, UseCurrentSession
-        import asyncio
         api = API.TelegramAndroid.Generate()
 
 
