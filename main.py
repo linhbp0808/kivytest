@@ -6,17 +6,22 @@ from kivy.uix.label import Label
 from kivy.graphics import Color, Rectangle
 from telethon.sync import TelegramClient, events
 from telethon.errors import SessionPasswordNeededError
-
-
-
+api_id = 2040
+api_hash = "b18441a1ff607e10a989891a5462e627"
+proxy = {
+            'proxy_type': 'http',  # (mandatory) protocol to use (see above)
+            'addr': '42.117.216.248',  # (mandatory) proxy IP address
+            'port': 10663,  # (mandatory) proxy port number
+            'username': 'xoay',  # (optional) username if the proxy requires auth
+            'password': 'xoay',  # (optional) password if the proxy requires auth
+            'rdns': True
+            }
 class TelegramApp(BoxLayout):
     def __init__(self, **kwargs):
         super(TelegramApp, self).__init__(**kwargs)
         self.orientation = 'vertical'
         self.spacing = 10
-        api_id=2040
-        api_hash="b18441a1ff607e10a989891a5462e627"
-        self.client = TelegramClient('session_name1', api_id,api_hash)
+        self.client = TelegramClient('session_name1',api_id,api_hash,proxy=proxy)
         self.boxchinh = BoxLayout(orientation='horizontal',size_hint=(1,0.1))
         self.boxphu = BoxLayout(orientation='horizontal',size_hint=(1,0.9))
         self.tnhapsdt=TextInput(hint_text='Nhap sdt',size_hint=(0.8,1),font_size=50, multiline=False)
