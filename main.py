@@ -3,8 +3,11 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.uix.label import Label
+from kivy.graphics import Color, Rectangle
 from telethon.sync import TelegramClient, events
 from telethon.errors import SessionPasswordNeededError
+
+
 
 class TelegramApp(BoxLayout):
     def __init__(self, **kwargs):
@@ -13,23 +16,28 @@ class TelegramApp(BoxLayout):
         self.spacing = 10
         api_id=2040
         api_hash="b18441a1ff607e10a989891a5462e627"
-        self.client = TelegramClient('session_name', api_id,api_hash )
-        self.boxchinh = BoxLayout(orientation='horizontal',size_hint=(None, None), size=(300, 500),pos_hint={'center_x':0.2,'center_y':1})
-        self.tnhapsdt=TextInput(hint_text='Nhap sdt',size_hint=(None, None),size=(200,40),
-                                            pos_hint={'center_x':1,'center_y':1}, multiline=False)
-        self.bnhapsdt = Button(text='->',size_hint=(None, None),size=(50,40),
-                                            pos_hint={'center_x':1,'center_y':1}, on_press=self.connect_telegram)
-        self.tnhapcode = TextInput(hint_text='Nhap code', size_hint=(None, None), size=(200, 40),
-                                  pos_hint={'center_x': 1, 'center_y': 1}, multiline=False)
-        self.tnhappass = TextInput(hint_text='Nhap pass 2fa', size_hint=(None, None), size=(200, 40),
-                                   pos_hint={'center_x': 1, 'center_y': 1}, multiline=False)
-        self.bcode = Button(text='->', size_hint=(None, None), size=(50, 40),
-                               pos_hint={'center_x': 1, 'center_y': 1}, on_press=self.verify_code)
+        self.client = TelegramClient('session_name1', api_id,api_hash)
+        self.boxchinh = BoxLayout(orientation='horizontal',size_hint=(1,0.1))
+        self.boxphu = BoxLayout(orientation='horizontal',size_hint=(1,0.9))
+        self.tnhapsdt=TextInput(hint_text='Nhap sdt',size_hint=(0.8,1),font_size=25, multiline=False)
+        self.bnhapsdt = Button(text='->',size_hint=(0.2, 1),font_size=25, on_press=self.connect_telegram)
+        self.tnhapcode = TextInput(hint_text='Nhap code', size_hint=(0.4, 1),font_size=25, multiline=False)
+        self.tnhappass = TextInput(hint_text='Nhap pass 2fa', size_hint=(0.4,1),font_size=25, multiline=False)
+        self.bcode = Button(text='->', size_hint=(0.2,1),font_size=25, on_press=self.verify_code)
+
+        self.tnhaptinnhan = TextInput(hint_text='Nhap tinnhan', size_hint=(0.6, 1), font_size=25, multiline=False)
+        self.tguitoi = TextInput(hint_text='Gui toi', size_hint=(0.2, 1), font_size=25, multiline=False)
+        self.bgui = Button(text='->', size_hint=(0.2, 1), font_size=25, on_press=self.send_message)
 
         self.boxchinh.add_widget(self.tnhapsdt)
         self.boxchinh.add_widget(self.bnhapsdt)
+        self.boxphu.add_widget(self.tnhaptinnhan)
+        self.boxphu.add_widget(self.tguitoi)
+        self.boxphu.add_widget(self.bgui)
 
         self.add_widget(self.boxchinh)
+        self.add_widget(self.boxphu)
+
 
 
     def connect_telegram(self, instance):
@@ -48,8 +56,7 @@ class TelegramApp(BoxLayout):
             self.boxchinh.add_widget(self.bcode)
             print('Code sent to your phone. Enter the code in the next TextInput.')
         else:
-            self.lbinfor = Label(text=str(self.client.get_me().phone+' đăng nhập thành công'), size_hint=(None, None), size=(200, 40),
-                             pos_hint={'center_x': 1, 'center_y': 1}, )
+            self.lbinfor = Label(text=str(self.client.get_me().phone+' đăng nhập thành công'),font_size=25, size_hint=(1,1) )
             self.boxchinh.add_widget(self.lbinfor)
 
 
@@ -69,19 +76,17 @@ class TelegramApp(BoxLayout):
         self.boxchinh.remove_widget(self.tnhapcode)
         self.boxchinh.remove_widget(self.tnhappass)
         self.boxchinh.remove_widget(self.bcode)
-        self.lbinfor = Label(text=str(self.client.get_me().phone + ' đăng nhập thành công'), size_hint=(None, None),
-                             size=(200, 40),
-                             pos_hint={'center_x': 1, 'center_y': 1}, )
+        self.lbinfor = Label(text=str(self.client.get_me().phone + ' đăng nhập thành công'),font_size=25, size_hint=(1, 1) )
         self.boxchinh.add_widget(self.lbinfor)
 
     def send_message(self, instance):
         # Lấy nội dung tin nhắn từ TextInput
 
-        message = self.message_input.text.strip()
-
+        message = self.tnhaptinnhan.text.strip()
+        toi=self.tguitoi.text.strip()
         # Gửi tin nhắn đến đối tượng được chỉ định (đổi ID người dùng tương ứng)
         try:
-            self.client.send_message('@hieuhieu0808', message)
+            self.client.send_message(toi, message)
             print('Message sent successfully!')
         except Exception as e:
             print(f'Error sending message: {e}')
