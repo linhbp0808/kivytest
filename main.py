@@ -6,6 +6,12 @@ from kivy.uix.label import Label
 from kivy.graphics import Color, Rectangle
 from telethon.sync import TelegramClient, events
 from telethon.errors import SessionPasswordNeededError
+
+from opentele.td import TDesktop
+from opentele.tl import TelegramClient
+from opentele.api import API, UseCurrentSession
+
+api = API.TelegramDesktop.Generate(system='macos',unique_id='2')
 api_id = 2040
 api_hash = "b18441a1ff607e10a989891a5462e627"
 proxy = {
@@ -21,7 +27,7 @@ class TelegramApp(BoxLayout):
         super(TelegramApp, self).__init__(**kwargs)
         self.orientation = 'vertical'
         self.spacing = 10
-        self.client = TelegramClient('session_name1',api_id,api_hash,proxy=proxy)
+        self.client = TelegramClient('session_name',api=api,proxy=proxy)
         self.boxchinh = BoxLayout(orientation='horizontal',size_hint=(1,0.1))
         self.boxphu = BoxLayout(orientation='horizontal',size_hint=(1,0.9))
         self.tnhapsdt=TextInput(hint_text='Nhap sdt',size_hint=(0.8,1),font_size=50, multiline=False)
