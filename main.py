@@ -119,7 +119,7 @@ class CombinedLayout(BoxLayout):
         self.client1 = TelegramClient('session_name', api_id, api_hash, proxy=proxy)
         if self.client.is_user_authorized():
             self.client.disconnect()
-            threading.Thread(target=self.laytinnhantele).start()
+            threading.Thread(target=self.laytime).start()
 
 
     def laytinnhantele(self):
