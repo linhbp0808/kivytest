@@ -37,7 +37,7 @@ version = 0.404
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy,sdl2_ttf,pillow,telethon,pyaes,rsa,pyasn1,opentele,PyQt5,python-socks[asyncio],async_timeout,pysocks,opentele,asyncio,ssl
+requirements = python3,kivy,sdl2_ttf,pillow,telethon,pyaes,rsa,pyasn1,opentele,PyQt5,python-socks[asyncio],async_timeout,pysocks,opentele,asyncio
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -63,10 +63,10 @@ orientation = portrait
 # author = © Copyright Info
 
 # change the major version of python used by the app
-osx.python_version = 3
+osx.python_version = 3.10.1
 
 # Kivy version to use
-osx.kivy_version = 1.9.1
+osx.kivy_version = 2.0.0
 
 #
 # Android specific
