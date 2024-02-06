@@ -43,7 +43,7 @@ class nhapcode(Widget):
             passw = self.ids.o2.text.strip()
             try:
               try:
-                  #client.sign_in(code=code)
+                  client.sign_in(code=code)
                   print('Successfully verified!')
               except SessionPasswordNeededError:
                   client.sign_in(password=passw)
