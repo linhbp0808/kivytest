@@ -33,24 +33,26 @@
         padding: 5
         spacing: 10
         orientation: 'vertical'
-        size_hint:(1,0.15)
+        size_hint:(1,1)
         Label:
-		    id:'dangnhapthnhcong'
+		    id:dangnhapthanhcong
 	        text: "Đã đăng nhập"
-		    size_hint:(1,0.15)
-		    font_size: 50
-		    background_color: (0.6, 0.8, 0.5, 1)
+		    size_hint:(1,0.07)
+		    font_size: 25
+		    background_color: (64/255,64/255,64/255, 0.8)
 		    canvas.before:
 		        Color:
 			        rgba: self.background_color
 			    Rectangle:
 				    size: self.size
 				    pos: self.pos
-        Label:
+        BoxLayout:
 		    id:nhantin
-		    text: "Đã đăng nhập"
-		    size_hint:(1,0.75)
+		    size_hint:(1,0.83)
 		    font_size: 50
+		    padding: 0
+            spacing: 0
+            orientation: 'horizontal'
 		    background_color: (0,0.7, 0.6, 0.5)
 		    canvas.before:
 			    Color:
@@ -58,6 +60,91 @@
 			    Rectangle:
 				    size: self.size
 				    pos: self.pos
+			BoxLayout:
+			    id:	 thietlap
+			    font_size: 50
+		        padding: 0
+                spacing: 0
+                orientation: 'vertical'
+                BoxLayout:
+                    id:chon
+                    size_hint:(1,0.35)
+                    orientation: 'horizontal'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        size_hint:(0.7,1)
+                        spacing: 0.1
+                        BoxLayout:
+                            id:chotloi
+                            padding: 0.5
+                            orientation: 'horizontal'
+                            Label:
+                                size_hint:(0.6,1)
+                                text:'Nhập chốt lời'
+                                background_color: (92/255,92/255,92/255, 0.8)
+		                        canvas.before:
+		                            Color:
+			                            rgba: self.background_color
+			                        Rectangle:
+				                        size: self.size
+				                        pos: self.pos
+                            TextInput:
+                                size_hint:(0.4,1)
+                                hint_text :'Mặc định:\n 1000.000'
+                        BoxLayout:
+                            id:chotlo
+                            padding: 0.5
+                            orientation: 'horizontal'
+                            Label:
+                                size_hint:(0.6,1)
+                                text:'Nhập chốt lỗ'
+                                background_color: (92/255,92/255,92/255, 0.8)
+		                        canvas.before:
+		                            Color:
+			                            rgba: self.background_color
+			                        Rectangle:
+				                        size: self.size
+				                        pos: self.pos
+                            TextInput:
+                                size_hint:(0.4,1)
+                                hint_text :'Mặc định:\n 0'
+                        BoxLayout:
+                            id:muccuoc
+                            padding: 0.5
+                            orientation: 'horizontal'
+                            Label:
+                                size_hint:(0.6,1)
+                                text:'Nhập mức cược'
+                                background_color: (92/255,92/255,92/255, 0.8)
+		                        canvas.before:
+		                            Color:
+			                            rgba: self.background_color
+			                        Rectangle:
+				                        size: self.size
+				                        pos: self.pos
+                            TextInput:
+                                size_hint:(0.4,1)
+                                hint_text :'Mặc định:\n 100'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        size_hint:(0.3,1)
+                        Spinner:
+		                    id: gapthep
+		                    #size: root.width*0.4, root.height*0.05
+		                    #pos: root.width*0.3, root.height*0.5
+		                    text: 'Cách gấp thiếp'
+		                    values: ['Gấp khi thắng', 'Gấp khi thua']
+		                Spinner:
+		                    id: congthuc
+		                    #size: root.width*0.4, root.height*0.05
+		                    #pos: root.width*0.3, root.height*0.5
+		                    text: 'Công thức'
+		                    values: ['cl', '2c1l','2l1c']
+		        BoxLayout:
+                    id:chon
+                    size_hint:(1,0.65)
+                    orientation: 'horizontal'
+
 		Label:
 		    id:time
 		    text: "giờ hiện tại"
