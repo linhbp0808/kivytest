@@ -4,6 +4,8 @@ from kivy.uix.widget import Widget
 from kivy.lang import Builder
 from kivy.uix.boxlayout import BoxLayout
 from kivy.clock import Clock
+from kivy.uix.dropdown import DropDown
+from kivy.factory import Factory
 from telethon.sync import TelegramClient, events
 from telethon.errors import SessionPasswordNeededError
 import asyncio
@@ -21,7 +23,7 @@ proxy = {
             'password': 'xoay',  # (optional) password if the proxy requires auth
             'rdns': True
             }
-client = TelegramClient('session_name', api_id, api_hash, proxy=proxy)
+client = TelegramClient('session_name', api_id, api_hash)#, proxy=proxy)
 client.connect()
 class nhapcode(Widget):
     def connect_telegram(self, *args):
@@ -56,7 +58,6 @@ class nhapcode(Widget):
               self.ids.o2.hint_text = 'nhap pass 2fa'
 class tele(Widget):
     pass
-
 class CombinedLayout(BoxLayout):
     def __init__(self, **kwargs):
         super(CombinedLayout, self).__init__(orientation='vertical', **kwargs)
@@ -75,6 +76,7 @@ class ShotApp(App):
         self.layout=CombinedLayout()
         self.lable=self.layout.layout3.ids.nhantin
         self.lable1 = self.layout.layout3.ids.time
+        self.lable2=self.layout.layout3.ids.dangnhapthanhcong
         print(self.lable1.text)
         if client.is_user_authorized():
             client.disconnect()
@@ -84,9 +86,12 @@ class ShotApp(App):
     def laytinnhantele(self):
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
-        self.client1 = TelegramClient('session_name', api_id, api_hash, proxy=proxy)
+        self.client1 = TelegramClient('session_name', api_id, api_hash)#, proxy=proxy)
         client = self.client1
         client.connect()
+        me=client.get_me()
+        cli=str(me.first_name + me.last_name +'('+me.phone+') ')
+        Clock.schedule_once(lambda dt: self.update(cli))
         with client:
             @client.on(events.NewMessage(from_users='tuyetbp0808'))
             async def create_poll(event):
@@ -129,7 +134,9 @@ class ShotApp(App):
         self.lable.text = f"tn: {current_time}"
 
     def update_lable1(self, current_time):
-        self.lable1.text = f"Current Time: {current_time}"
+        self.lable1.text = f"Current Time: {current_time,self.layout.layout3.ids.gapthep.text}"
+    def update(self,cli):
+        self.lable2.text=str(cli)
 
 if __name__ == '__main__':
     ShotApp().run()
